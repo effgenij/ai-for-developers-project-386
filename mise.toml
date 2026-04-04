@@ -1,0 +1,49 @@
+# mise.toml — Monorepo development environment
+[tools]
+node = "22.22.2"
+
+[env]
+NODE_ENV = "development"
+
+[tasks.install]
+description = "Install all workspace dependencies"
+run = "npm install"
+
+[tasks.dev]
+alias = "d"
+description = "Start all dev servers (frontend + backend)"
+run = "npx turbo run dev"
+
+[tasks."dev:frontend"]
+description = "Start frontend dev server only"
+run = "npx turbo run dev --filter=@repo/frontend"
+
+[tasks."dev:backend"]
+description = "Start backend dev server only"
+run = "npx turbo run dev --filter=@repo/backend"
+
+[tasks.build]
+alias = "b"
+description = "Build all packages"
+run = "npx turbo run build"
+
+[tasks.test]
+alias = "t"
+description = "Run all tests"
+run = "npx turbo run test"
+
+[tasks.lint]
+description = "Lint all packages"
+run = "npx turbo run lint"
+
+[tasks.check]
+description = "Type-check all packages"
+run = "npx turbo run check-types"
+
+[tasks.spec]
+description = "Compile TypeSpec and generate OpenAPI spec"
+run = "npx turbo run build --filter=@repo/api-spec"
+
+[tasks."spec:watch"]
+description = "Watch TypeSpec files and recompile on changes"
+run = "cd packages/api-spec && npx tsp compile . --watch"
