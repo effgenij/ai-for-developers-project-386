@@ -1,0 +1,16 @@
+{
+  "name": "ai-for-developers-project-386",
+  "private": true,
+  "packageManager": "npm@10.9.7",
+  "workspaces": ["apps/*", "packages/*"],
+  "scripts": {
+    "build": "turbo run build",
+    "dev": "turbo run dev",
+    "lint": "turbo run lint",
+    "test": "turbo run test",
+    "check-types": "turbo run check-types"
+  },
+  "devDependencies": {
+    "turbo": "^2.5.3"
+  }
+}

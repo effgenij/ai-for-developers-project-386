@@ -1,0 +1,7 @@
+{
+  "extends": "@repo/typescript-config/frontend.json",
+  "compilerOptions": {
+    "outDir": "dist"
+  },
+  "include": ["src", "vite-env.d.ts"]
+}
