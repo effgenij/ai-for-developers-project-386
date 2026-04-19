@@ -51,3 +51,11 @@ run = "npx turbo run build --filter=@repo/api-spec"
 [tasks."spec:watch"]
 description = "Watch TypeSpec files and recompile on changes"
 run = "cd packages/api-spec && npx tsp compile . --watch"
+
+[tasks."dev:prism"]
+description = "Run Prism mock server from the OpenAPI contract"
+run = "npx prism mock packages/api-spec/tsp-output/openapi.yaml -p 4010"
+
+[tasks."dev:frontend:mock"]
+description = "Start frontend against Prism mock API"
+run = "VITE_API_PROXY_TARGET=http://localhost:4010 npx turbo run dev --filter=@repo/frontend"
