@@ -1,0 +1,17 @@
+#!/bin/bash
+CLAUDE="CLAUDE.md"
+AGENTS="AGENTS.md"
+
+CLAUDE_STAGED=$(git diff --cached --name-only | grep -x "$CLAUDE")
+AGENTS_STAGED=$(git diff --cached --name-only | grep -x "$AGENTS")
+
+if [ -n "$CLAUDE_STAGED" ] && [ -z "$AGENTS_STAGED" ]; then
+  cp "$CLAUDE" "$AGENTS" && git add "$AGENTS"
+  echo "[hook] Synced CLAUDE.md → AGENTS.md"
+elif [ -n "$AGENTS_STAGED" ] && [ -z "$CLAUDE_STAGED" ]; then
+  cp "$AGENTS" "$CLAUDE" && git add "$CLAUDE"
+  echo "[hook] Synced AGENTS.md → CLAUDE.md"
+elif [ -n "$CLAUDE_STAGED" ] && [ -n "$AGENTS_STAGED" ]; then
+  cp "$CLAUDE" "$AGENTS" && git add "$AGENTS"
+  echo "[hook] Both staged — CLAUDE.md is canonical, synced to AGENTS.md"
+fi

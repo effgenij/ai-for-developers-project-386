@@ -6,8 +6,12 @@ node = "22.22.2"
 NODE_ENV = "development"
 
 [tasks.install]
-description = "Install all workspace dependencies"
-run = "npm install"
+description = "Install all workspace dependencies and git hooks"
+run = "npm install && mise run install-hooks"
+
+[tasks."install-hooks"]
+description = "Install git hooks from scripts/hooks/"
+run = "cp scripts/hooks/pre-commit .git/hooks/pre-commit && chmod +x .git/hooks/pre-commit"
 
 [tasks.dev]
 alias = "d"
