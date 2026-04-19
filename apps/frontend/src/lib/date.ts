@@ -1,4 +1,5 @@
 import dayjs from 'dayjs';
+import type { Booking } from './api-types';
 
 export function formatLongDate(value: string) {
   return dayjs(value).format('D MMMM YYYY');
@@ -18,4 +19,12 @@ export function getBookingWindow(start = new Date()) {
 
 export function formatDayLabel(value: Date) {
   return dayjs(value).format('D MMM');
+}
+
+export function groupBookingsByDate(bookings: Booking[]) {
+  return bookings.reduce<Record<string, Booking[]>>((groups, booking) => {
+    const key = dayjs(booking.startTime).format('YYYY-MM-DD');
+    groups[key] = groups[key] ? [...groups[key], booking] : [booking];
+    return groups;
+  }, {});
 }
