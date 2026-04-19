@@ -11,3 +11,11 @@ export function formatTimeRange(start: string, end: string) {
 export function formatApiDate(value: Date) {
   return dayjs(value).format('YYYY-MM-DD');
 }
+
+export function getBookingWindow(start = new Date()) {
+  return Array.from({ length: 14 }, (_, index) => dayjs(start).add(index, 'day').toDate());
+}
+
+export function formatDayLabel(value: Date) {
+  return dayjs(value).format('D MMM');
+}
