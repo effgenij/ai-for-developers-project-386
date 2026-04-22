@@ -10,7 +10,9 @@
     "check-types": "tsc --noEmit",
     "preview": "vite preview",
     "test": "vitest run",
-    "test:watch": "vitest"
+    "test:watch": "vitest",
+    "test:e2e": "playwright test --config=playwright.config.ts",
+    "test:e2e:headed": "playwright test --config=playwright.config.ts --headed"
   },
   "dependencies": {
     "@mantine/core": "^8.3.0",
@@ -25,6 +27,7 @@
     "react-router": "^7.9.4"
   },
   "devDependencies": {
+    "@playwright/test": "^1.59.1",
     "@repo/typescript-config": "*",
     "@testing-library/jest-dom": "^6.6.3",
     "@testing-library/react": "^16.1.0",

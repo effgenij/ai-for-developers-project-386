@@ -18,6 +18,9 @@
     "test": {},
     "check-types": {
       "dependsOn": ["transit"]
+    },
+    "test:e2e": {
+      "cache": false
     }
   }
 }
