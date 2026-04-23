@@ -14,7 +14,7 @@ export function SlotList({ slots, selectedStartTime, onSelect }: SlotListProps) 
   }
 
   return (
-    <Stack>
+    <Stack data-slot-list>
       {slots.map((slot) => (
         <Button
           key={slot.startTime}
